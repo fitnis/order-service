@@ -11,9 +11,9 @@ func main() {
 
 	api := router.Group("/orders")
 	{
-		api.POST("", handlers.CreateOrder)
-		api.GET("", handlers.GetOrders)
-		api.DELETE("/:orderId", handlers.DeleteOrder)
+		api.POST("/new", handlers.CreateOrder)
+		api.GET("/get", handlers.GetOrders)
+		api.DELETE("/delete/:orderId", handlers.DeleteOrder)
 	}
 
 	router.Run(":8083")
