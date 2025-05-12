@@ -4,21 +4,17 @@ import (
 	"github.com/fitnis/order-service/models"
 )
 
-var orders = make(map[string]models.OrderRequest)
+var orders []models.OrderRequest
 
-func CreateOrder(id string, req models.OrderRequest) models.GenericResponse {
-	orders[id] = req
+func CreateOrder(req models.OrderRequest) models.GenericResponse {
+	orders = append(orders, req)
 	return models.GenericResponse{Message: "Order created"}
 }
 
 func GetOrders() []models.OrderRequest {
-	var list []models.OrderRequest
-	for _, o := range orders {
-		list = append(list, o)
-	}
-	return list
+	return orders
 }
 
 func DeleteOrder(id string) {
-	delete(orders, id)
+	orders = []models.OrderRequest{}
 }
